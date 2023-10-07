@@ -24,6 +24,9 @@ COPY image-info.sh /tmp/image-info.sh
 # Copy ublue-update.toml to tmp first, to avoid being overwritten.
 COPY usr/etc/ublue-update/ublue-update.toml /tmp/ublue-update.toml
 
+# Add custom scripts
+ADD --chmod=0755 scripts/* /tmp/
+
 # GNOME VRR
 RUN if grep -qv "39" <<< "${FEDORA_MAJOR_VERSION}"; then \
     wget https://copr.fedorainfracloud.org/coprs/kylegospo/gnome-vrr/repo/fedora-"${FEDORA_MAJOR_VERSION}"/kylegospo-gnome-vrr-fedora-"${FEDORA_MAJOR_VERSION}".repo -O /etc/yum.repos.d/_copr_kylegospo-gnome-vrr.repo && \
@@ -135,8 +138,6 @@ RUN systemctl enable podman.socket && \
 
 ### BEGIN bri
 
-# Add custom scripts
-ADD --chmod=0755 scripts/* /tmp/
 
 ### add bat
 RUN /tmp/bat.sh

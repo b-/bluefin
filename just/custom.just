@@ -107,7 +107,7 @@ distrobox-universal:
 
 # Switch to the fish shell
 fish:
-  sudo lchsh $USER /usr/bin/fish 
+  chsh -s /usr/bin/fish
 
 # Install recommended GNOME extensions
 gnome-extensions:
@@ -215,7 +215,7 @@ yafti:
 
 # Switch to the zsh shell
 zsh:
-  sudo lchsh $USER /usr/bin/zsh 
+  chsh -s /usr/bin/zsh
 
 docker:
   sudo systemctl enable --now docker
